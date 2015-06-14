@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Mr.Senti</title>
+
+</head>
+<body>
+
+{% if req_post %}
+    <h3>polarity:{{polarity}}</h3>
+    {% if polarity < 0.5 %}<h3> Oh Boy!You just made him angrier!! </h3>{% endif %}
+    {% if pole %}
+        {% if polarity >= 1 %}
+            <img src="{% static "awesome.jpg" %}" alt="awesome"/>
+        {% else %}
+            <img src="{% static "smile.jpg" %}" alt="smile"/>
+        {% endif %}
+    {% else %}
+        {% if polarity <= -0.5 %}
+            <img src="{% static "angry.jpg" %}" alt="angry"/>
+        {% else %}
+            <img src="{% static "cry.jpg" %}" alt="cry"/>
+        {% endif %}
+    {% endif %}
+{% endif %}
+<form method="post" action="{% url "senti" %}">{% csrf_token %}
+Enter a sentimental sentence :) <input type="text" name="senti_string" value="Good Day!"><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
