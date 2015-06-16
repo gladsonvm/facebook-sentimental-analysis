@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from mrsenti.views import index
+from mrsenti.views import index, fbsenti
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index, name='senti'),
+    url(r'^fbsenti/', fbsenti, name='fbsenti'),
 ]

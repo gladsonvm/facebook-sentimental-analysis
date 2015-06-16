@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from textblob import TextBlob
+import requests
 # Create your views here.
 
 
 def index(request):
-
+    
     context = {'req_post': False}
 
     template_name = '1.html'
@@ -25,3 +27,21 @@ def index(request):
             pole = 0
             context = {'senti': senti_score, 'polarity': polarity,'pole':pole, 'req_post': req_post}
     return render(request, template_name, context)
+
+def fbsenti(request):
+    code = str(request.GET['code'])
+    resp = requests.get('https://graph.facebook.com/v2.3/oauth/access_token? \
+        client_id=250298065173805& \
+        redirect_uri=http://localhost:8000/fbsenti& \
+        client_secret=149460e59a2357cae1bac87526b986f5&code='+code)
+    access_token = str(resp.json()['access_token'])
+    user = requests.get('https://graph.facebook.com/me?access_token='+access_token)
+    user_id = user.json()['id']
+    user_name = user.json()['name']
+    statuses = requests.get('https://graph.facebook.com/me/statuses?access_token='+access_token)
+    fb_status_message = []
+    for post in statuses.json()['data']:
+        fb_status_message.append(post['message'])
+    # import ipdb;ipdb.set_trace();
+    return HttpResponse(fb_status_message)
+
