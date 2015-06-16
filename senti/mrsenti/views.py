@@ -31,9 +31,9 @@ def index(request):
 def fbsenti(request):
     code = str(request.GET['code'])
     resp = requests.get('https://graph.facebook.com/v2.3/oauth/access_token? \
-        client_id=250298065173805& \
+        client_id=<Your Client Id here>& \
         redirect_uri=http://localhost:8000/fbsenti& \
-        client_secret=149460e59a2357cae1bac87526b986f5&code='+code)
+        client_secret=<Your Client secret here>&code='+code)
     access_token = str(resp.json()['access_token'])
     user = requests.get('https://graph.facebook.com/me?access_token='+access_token)
     user_id = user.json()['id']
