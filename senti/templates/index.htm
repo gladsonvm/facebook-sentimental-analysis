@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+   <head>
+      <title>Facebook Emotions</title>
+      <link href="{% static "css/style.css" %}" rel="stylesheet"/>
+      <meta content="viewport"content="width=device-width"/>
+       
+   </head>
+    <body>
+    <!--wrapper-->
+    {% if req_post %}
+    <h3>polarity:{{polarity}}</h3>
+    {% if polarity < 0.5 %}<h3> Oh Boy!You just made him angrier!! </h3>{% endif %}
+    {% if pole %}
+        {% if polarity >= 1 %}
+            <img src="{% static "images/awesome.jpg" %}" alt="awesome"/>
+        {% else %}
+            <img src="{% static "images/smile.jpg" %}" alt="smile"/>
+        {% endif %}
+    {% else %}
+        {% if polarity <= -0.5 %}
+            <img src="{% static "images/angry.jpg" %}" alt="angry"/>
+        {% else %}
+            <img src="{% static "images/cry.jpg" %}" alt="cry"/>
+        {% endif %}
+    {% endif %}
+{% endif %}
+     <div id="wrapper">
+      <div class="container">
+        <div class="banner">
+            <h1>Facebook Emotions</h1> 
+            <p>Login with facebook account</p>
+            <a href="#"><img width="300px" height="100px" src = "{% static "images/FacebookButton.png" %}"/></a>
+            <br> 
+         
+           <form method="post" action="{% url "senti" %}">{% csrf_token %}
+          <!-- <input type="text" name="senti_string" value="Good Day!"><br> -->
+          
+           <textarea class ="inputemotion" rows="4" cols="50" name="senti_string">
+          </textarea>
+          <input type="submit" class="btn" value="Submit"> 
+          </form> 
+           
+            <!-- <a href="#" class ="btn">Submit</a> -->
+          
+            
+            
+        </div>
+         
+          
+          
+      </div>
+       </div> 
+        <!--wrapper-->
+    </body>
+    
+</html>

@@ -1,0 +1,70 @@
+*{padding:0;margin:0;}
+html{box-sizing: border-box;}
+*,*:before,*:after{box-sizing: inherit;}
+body{font-size:100%;font-family: Arial,sans-serif;background: url("../images/emoticon_bg.jpg")no-repeat 0 0;}
+ul li{list-style: none;}
+img{max-width: 100%}
+a{text-decoration: none;}
+.clear{clear: both}
+
+
+
+
+
+#wrapper{width:100%;
+    
+    
+}
+
+.container{
+    width:90%;
+    max-width: 1000px;
+    padding:0 1em;
+    margin:0 auto;
+    position: relative;
+}
+
+
+
+
+
+
+
+.banner {
+    
+    background:#d8d5d5;
+    padding:50px 0 50px 0;
+    text-align: center;
+    width: 90%;
+    position: absolute;
+    top:8em;
+    left:70;
+    right:0;
+    
+}
+
+
+.inputemotion
+{
+    
+  padding:15px;  
+    margin-top:15px;
+    width: 400px
+    
+    
+}
+
+.btn {
+    padding:15px;
+    background:#f08c33;
+    color:#fff;
+    border-radius:5px;
+    display:block;
+    width:25%;
+    margin:20px auto 30px;
+    text-align: center;
+}
+
+.facebokBtn{
+    background:url("../FacebookButton.png) no-repeat 0 0";
+        }
